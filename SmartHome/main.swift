@@ -26,6 +26,7 @@ repeat {
         switch input {
         case "1":
             home.add(Bulb(name: "Living Room"))
+            home.add(PhilipsHueColourAmbiance(name: "Kitchen"))
         case "2":
             print("Selected 2")
         case "3":

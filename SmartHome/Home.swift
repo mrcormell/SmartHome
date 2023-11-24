@@ -33,6 +33,27 @@ protocol Device {
     func turnOn()
 }
 
+protocol Colour {
+    var colour: String { get set }
+}
+
+protocol Dimmable {
+    var brightness: Int { get set }
+    mutating func setBrightness(level: Int)
+}
+
+extension Dimmable {
+    mutating func setBrightness(level: Int) {
+        if level >= 100 {
+            brightness = 100
+        } else if level <= 0 {
+            brightness = 0
+        } else {
+            brightness = level
+        }
+    }
+}
+
 class Bulb: Device {
     private var isOn: Bool = false
     private var name: String
@@ -57,5 +78,9 @@ class Bulb: Device {
         isOn = true
     }
     
-    
+}
+
+class PhilipsHueColourAmbiance: Bulb, Dimmable, Colour {
+    var brightness: Int = 100
+    var colour: String = "White"
 }
